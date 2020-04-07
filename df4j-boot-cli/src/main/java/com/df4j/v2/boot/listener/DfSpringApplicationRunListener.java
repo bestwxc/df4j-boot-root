@@ -18,43 +18,48 @@ public class DfSpringApplicationRunListener implements SpringApplicationRunListe
     private SpringApplication application;
     private String[] args;
 
+    private ThreadLocal<Long> startTime = new ThreadLocal<>();
+
     public DfSpringApplicationRunListener(SpringApplication application, String[] args){
         this.application = application;
         this.args = args;
     }
 
     @Override
-    public void starting() {
-        logger.error("当前程序starting");
-    }
-
-    @Override
     public void environmentPrepared(ConfigurableEnvironment environment) {
-        LoggerManage.getSysLogger().error("当前程序environmentPrepared");
+        LoggerManage.getSysLogger().info("开始启动业务程序");
+        startTime.set(System.currentTimeMillis());
     }
 
     @Override
     public void contextPrepared(ConfigurableApplicationContext context) {
-        LoggerManage.getSysLogger().error("当前程序contextPrepared");
+        LoggerManage.getSysLogger().info("当前业务程序contextPrepared");
+    }
+
+    @Override
+    public void starting() {
+        LoggerManage.getSysLogger().info("当前业务程序starting");
     }
 
     @Override
     public void contextLoaded(ConfigurableApplicationContext context) {
-        LoggerManage.getSysLogger().error("当前程序contextLoaded");
+        LoggerManage.getSysLogger().info("当前业务程序contextLoaded");
     }
 
     @Override
     public void started(ConfigurableApplicationContext context) {
-        LoggerManage.getSysLogger().error("当前程序started");
+        LoggerManage.getSysLogger().info("当前业务程序started");
     }
 
     @Override
     public void running(ConfigurableApplicationContext context) {
-        LoggerManage.getSysLogger().error("当前程序running");
+        LoggerManage.getSysLogger().info("当前业务程序启动完成，进入running状态，耗时{}ms。",
+                System.currentTimeMillis() - startTime.get());
     }
 
     @Override
     public void failed(ConfigurableApplicationContext context, Throwable exception) {
-        LoggerManage.getSysLogger().error("当前程序failed");
+        LoggerManage.getSysLogger().info("当前业务程序启动失败，耗时{}ms",
+                System.currentTimeMillis() - startTime.get());
     }
 }
