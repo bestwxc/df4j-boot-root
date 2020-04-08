@@ -79,5 +79,5 @@ public abstract class AbstractFunction implements Function {
      * @param map
      * @return
      */
-    abstract Result invoke(Map map);
+    public abstract Result invoke(Map map);
 }
