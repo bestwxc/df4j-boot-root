@@ -27,8 +27,8 @@ public class HttpDebugLogAspect {
 
     private ThreadLocal<String> url = new ThreadLocal<>();
 
-    @Pointcut("@annotation(com.df4j.boot.web.aspect.PrintLog)" +
-            " || @within(com.df4j.boot.web.aspect.PrintLog)" +
+    @Pointcut("@annotation(com.df4j.v2.boot.web.aspect.PrintLog)" +
+            " || @within(com.df4j.v2.boot.web.aspect.PrintLog)" +
             " || execution(public * com..controller.*.*(..))" +
             " || execution(public * cn..controller.*.*(..))" +
             " || execution(public * org..controller.*.*(..))" +

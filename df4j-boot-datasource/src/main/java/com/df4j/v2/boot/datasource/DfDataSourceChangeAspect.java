@@ -28,8 +28,8 @@ public class DfDataSourceChangeAspect {
     @Autowired
     private DfBootDatasourceProperties dfBootDatasourceProperties;
 
-    @Pointcut("@annotation(com.df4j.boot.datasource.UseDataSource)" +
-            " || @within(com.df4j.boot.datasource.UseDataSource)" +
+    @Pointcut("@annotation(com.df4j.v2.boot.datasource.UseDataSource)" +
+            " || @within(com.df4j.v2.boot.datasource.UseDataSource)" +
             " || execution(public * com..service.*.*(..))" +
             " || execution(public * cn..service.*.*(..))" +
             " || execution(public * org..service.*.*(..))" +
